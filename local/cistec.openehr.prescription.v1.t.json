@@ -25,7 +25,7 @@
       "sem_ver" : "1.0.0",
       "build_uid" : "",
       "PARENT:MD5-CAM-1.0.1" : "1e16188536debf6d94aea7d7f28fb79a",
-      "MD5-CAM-1.0.1" : "7286ce17342473e0ce368dd39cc9a909"
+      "MD5-CAM-1.0.1" : "3d435763a00350b590a8222b13e8e715"
     },
     "details" : {
       "de" : {
@@ -55,7 +55,7 @@
     }
   },
   "parentArchetypeId" : "openEHR-EHR-COMPOSITION.prescription-cistec.v0",
-  "differential" : false,
+  "differential" : true,
   "archetypeId" : {
     "@type" : "ARCHETYPE_HRID",
     "value" : "openEHR-EHR-COMPOSITION.t_prescription-cistec.v0"
@@ -63,117 +63,14 @@
   "definition" : {
     "@type" : "C_COMPLEX_OBJECT",
     "rmTypeName" : "COMPOSITION",
-    "occurrences" : "1..1",
     "nodeId" : "at0000.1.1",
     "attributes" : [ {
       "@type" : "C_ATTRIBUTE",
-      "rmAttributeName" : "category",
-      "existence" : "1..1",
-      "children" : [ {
-        "@type" : "C_COMPLEX_OBJECT",
-        "rmTypeName" : "DV_CODED_TEXT",
-        "occurrences" : "1..1",
-        "attributes" : [ {
-          "@type" : "C_ATTRIBUTE",
-          "rmAttributeName" : "defining_code",
-          "existence" : "1..1",
-          "children" : [ {
-            "@type" : "C_TERMINOLOGY_CODE",
-            "rmTypeName" : "CODE_PHRASE",
-            "occurrences" : "1..1",
-            "terminologyId" : {
-              "value" : "openehr"
-            },
-            "constraint" : [ "433" ]
-          } ]
-        } ],
-        "attributeTuples" : [ ]
-      } ]
-    }, {
-      "@type" : "C_ATTRIBUTE",
       "rmAttributeName" : "context",
-      "existence" : "0..1",
       "children" : [ {
         "@type" : "C_COMPLEX_OBJECT",
         "rmTypeName" : "EVENT_CONTEXT",
-        "occurrences" : "1..1",
-        "attributes" : [ {
-          "@type" : "C_ATTRIBUTE",
-          "rmAttributeName" : "other_context",
-          "existence" : "0..1",
-          "children" : [ {
-            "@type" : "C_COMPLEX_OBJECT",
-            "rmTypeName" : "ITEM_TREE",
-            "occurrences" : "1..1",
-            "nodeId" : "at0001",
-            "attributes" : [ {
-              "@type" : "C_ATTRIBUTE",
-              "rmAttributeName" : "items",
-              "existence" : "0..1",
-              "cardinality" : {
-                "@type" : "CARDINALITY",
-                "interval" : "0..*",
-                "ordered" : false,
-                "unique" : false
-              },
-              "children" : [ {
-                "@type" : "ARCHETYPE_SLOT",
-                "rmTypeName" : "CLUSTER",
-                "occurrences" : "0..*",
-                "nodeId" : "at0007",
-                "includes" : [ {
-                  "@type" : "ASSERTION",
-                  "stringExpression" : "archetype_id/value matches {/.*/}",
-                  "expression" : {
-                    "@type" : "BINARY_OPERATOR",
-                    "type" : "BOOLEAN",
-                    "operator" : "matches",
-                    "leftOperand" : {
-                      "@type" : "MODEL_REFERENCE",
-                      "type" : "STRING",
-                      "precedenceOverriden" : false,
-                      "referenceType" : "Attribute",
-                      "path" : "archetype_id/value"
-                    },
-                    "rightOperand" : {
-                      "@type" : "CONSTRAINT",
-                      "type" : "STRING",
-                      "precedenceOverriden" : false,
-                      "referenceType" : "Constraint",
-                      "item" : {
-                        "@type" : "C_STRING",
-                        "constraint" : [ "/.*/" ]
-                      }
-                    },
-                    "precedenceOverriden" : false
-                  },
-                  "variables" : [ ]
-                } ],
-                "excludes" : [ ],
-                "closed" : false
-              }, {
-                "@type" : "C_COMPLEX_OBJECT",
-                "rmTypeName" : "ELEMENT",
-                "occurrences" : "0..*",
-                "nodeId" : "at0008",
-                "attributes" : [ {
-                  "@type" : "C_ATTRIBUTE",
-                  "rmAttributeName" : "value",
-                  "existence" : "0..1",
-                  "children" : [ {
-                    "@type" : "C_COMPLEX_OBJECT",
-                    "rmTypeName" : "DV_IDENTIFIER",
-                    "occurrences" : "1..1",
-                    "attributes" : [ ],
-                    "attributeTuples" : [ ]
-                  } ]
-                } ],
-                "attributeTuples" : [ ]
-              } ]
-            } ],
-            "attributeTuples" : [ ]
-          } ]
-        } ],
+        "attributes" : [ ],
         "attributeTuples" : [ ]
       } ]
     }, {
@@ -190,7 +87,7 @@
         "@type" : "C_ARCHETYPE_ROOT",
         "rmTypeName" : "INSTRUCTION",
         "occurrences" : "1..*",
-        "nodeId" : "at0.0.2",
+        "nodeId" : "at0.0.4",
         "attributes" : [ ],
         "attributeTuples" : [ ],
         "archetypeRef" : "cistec.openehr.base_medication_order.v1",
@@ -209,62 +106,12 @@
           "code" : "at0000",
           "text" : "Prescription",
           "description" : "Set of medication orders communicated to pharmacy."
-        },
-        "at0001" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0001",
-          "text" : "Tree",
-          "description" : "@ internal @"
-        },
-        "at0007" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0007",
-          "text" : "Extension",
-          "description" : "Additional information required to capture local context or to align with other reference models/formalisms.",
-          "comment" : "e.g. Local hospital departmental infomation or additional metadata to align with FHIR or CIMI equivalents."
-        },
-        "at0008" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0008",
-          "text" : "Prescription identifier",
-          "description" : "An identifier for the prescription as a whole."
-        },
-        "at0000.1.1" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0000.1.1",
-          "text" : "Prescription",
-          "description" : "Set of medication orders communicated to pharmacy."
         }
       },
       "de" : {
         "at0000" : {
           "@type" : "ARCHETYPE_TERM",
           "code" : "at0000",
-          "text" : "Rezept",
-          "description" : "Satz von Medikationsanordnungen, die an die Apotheke übermittelt werden. "
-        },
-        "at0001" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0001",
-          "text" : "Tree",
-          "description" : "@ internal @"
-        },
-        "at0007" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0007",
-          "text" : "Erweiterung",
-          "description" : "Zusätzliche Informationen, die erforderlich sind, um den lokalen Kontext zu erfassen oder mit anderen Referenzmodellen/Formalismen in Einklang zu bringen.",
-          "comment" : "z. B. Informationen aus der Abteilung eines lokalen Krankenhauses oder zusätzliche Metadaten, um mit FHIR- oder CIMI-Äquivalenten übereinzustimmen."
-        },
-        "at0008" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0008",
-          "text" : "ID des Rezeptes",
-          "description" : "Eine ID für das gesamte Rezept. "
-        },
-        "at0000.1.1" : {
-          "@type" : "ARCHETYPE_TERM",
-          "code" : "at0000.1.1",
           "text" : "Rezept",
           "description" : "Satz von Medikationsanordnungen, die an die Apotheke übermittelt werden. "
         }
